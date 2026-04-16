@@ -9,6 +9,13 @@ interface Props {
 const { item } = Astro.props;
 const { title, description, languages, repository, status, featured } = item.data;
 const slug = item.slug;
+const statusClasses: Record<string, string> = {
+  maintained: 'text-green-600 dark:text-green-400',
+  active: 'text-blue-600 dark:text-blue-400',
+  archived: 'text-slate-600 dark:text-slate-400',
+  draft: 'text-yellow-600 dark:text-yellow-400',
+};
+const statusClass = statusClasses[status] ?? 'text-slate-600 dark:text-slate-400';
 ---
 
 <div class={`card ${featured ? 'border-blue-400 border-2' : ''}`}>
@@ -30,11 +37,7 @@ const slug = item.slug;
     ))}
   </div>
 
-  <p class={`text-xs font-semibold mb-3 ${
-    status === 'maintained' ? 'text-green-600 dark:text-green-400' :
-    status === 'active' ? 'text-blue-600 dark:text-blue-400' :
-    'text-yellow-600 dark:text-yellow-400'
-  }`}>
+  <p class={`text-xs font-semibold mb-3 ${statusClass}`}>
     {status}
   </p>
 
