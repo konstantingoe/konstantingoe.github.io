@@ -1,0 +1,30 @@
+---
+// src/pages/teaching/[slug].astro
+import CollectionLayout from '../../layouts/CollectionLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const teaching = await getCollection('teaching');
+  return teaching.map((course) => ({
+    params: { slug: course.slug },
+    props: { item: course },
+  }));
+}
+
+interface Props {
+  item: any;
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<CollectionLayout
+  title={item.data.title}
+  date={item.data.date}
+  venue={item.data.venue}
+  location={item.data.location}
+  type={item.data.type}
+>
+  <Content />
+</CollectionLayout>

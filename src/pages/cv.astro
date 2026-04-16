@@ -1,0 +1,136 @@
+---
+// src/pages/cv.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorProfile from '../components/AuthorProfile.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc, formatDate } from '../utils/siteConfig';
+
+const publications = sortByDateDesc(await getCollection('publications'));
+const talks = sortByDateDesc(await getCollection('talks'));
+const teaching = sortByDateDesc(await getCollection('teaching'));
+---
+
+<BaseLayout title="CV" currentPage="/cv">
+  <section class="container-page">
+    <div class="grid md:grid-cols-3 gap-8">
+      <aside class="md:col-span-1">
+        <AuthorProfile />
+      </aside>
+
+      <div class="md:col-span-2">
+        <h1 class="text-4xl font-bold mb-6 text-slate-900">Curriculum Vitae</h1>
+
+        <!-- Education -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900">Education</h2>
+          <ul class="space-y-3">
+            <li>
+              <p class="font-semibold text-slate-900">Ph.D. in Mathematical Statistics</p>
+              <p class="text-sm text-slate-600">Technical University of Munich (TUM), 2025</p>
+              <p class="text-sm text-slate-600">Supervisors: Mathias Drton, Tobias Windisch</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">M.Sc. Statistics</p>
+              <p class="text-sm text-slate-600">Humboldt University of Berlin, 2020</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">M.Sc. Economics (Math Major)</p>
+              <p class="text-sm text-slate-600">Vienna University of Economics and Business, 2019</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">B.Sc. Economics</p>
+              <p class="text-sm text-slate-600">University of Heidelberg, 2016</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">B.A. Sociology</p>
+              <p class="text-sm text-slate-600">University of Heidelberg, 2015</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900">Work Experience</h2>
+          <ul class="space-y-3">
+            <li>
+              <p class="font-semibold text-slate-900">Postdoctoral Researcher</p>
+              <p class="text-sm text-slate-600">University of Regensburg, since 2026</p>
+              <p class="text-sm text-slate-600">Supervisor: Merle Behr</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">Data Science</p>
+              <p class="text-sm text-slate-600">Robert Bosch GmbH, Fall 2022 – 2025</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">Student Researcher</p>
+              <p class="text-sm text-slate-600">German Institute for Economic Research (DIW), Fall 2018 – 2020</p>
+              <p class="text-sm text-slate-600">Supervisor: Carsten Schröder</p>
+            </li>
+            <li>
+              <p class="font-semibold text-slate-900">Student Researcher</p>
+              <p class="text-sm text-slate-600">Institute for Economic Inequality, Vienna, Fall 2017 – 2019</p>
+              <p class="text-sm text-slate-600">Supervisor: Stefan Humer</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900">Technical Skills</h2>
+          <div class="flex flex-wrap gap-2">
+            {['Python', 'R', 'Rust', 'Stata'].map((skill) => (
+              <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <!-- Publications -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900">Publications</h2>
+          <ul class="space-y-3">
+            {publications.map((pub) => (
+              <li>
+                <a href={`/publications/${pub.slug}`} class="font-semibold text-blue-600 hover:text-blue-800 underline">
+                  {pub.data.title}
+                </a>
+                <p class="text-sm text-slate-600">{pub.data.venue}, {formatDate(pub.data.date)}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Talks -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900">Talks & Presentations</h2>
+          <ul class="space-y-3">
+            {talks.map((talk) => (
+              <li>
+                <a href={`/talks/${talk.slug}`} class="font-semibold text-blue-600 hover:text-blue-800 underline">
+                  {talk.data.title}
+                </a>
+                <p class="text-sm text-slate-600">{talk.data.venue}, {formatDate(talk.data.date)}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Teaching -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900">Teaching</h2>
+          <ul class="space-y-3">
+            {teaching.map((course) => (
+              <li>
+                <a href={`/teaching/${course.slug}`} class="font-semibold text-blue-600 hover:text-blue-800 underline">
+                  {course.data.title}
+                </a>
+                <p class="text-sm text-slate-600">{course.data.venue}, {formatDate(course.data.date)}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

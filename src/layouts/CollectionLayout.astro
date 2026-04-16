@@ -1,0 +1,66 @@
+---
+// src/layouts/CollectionLayout.astro
+import BaseLayout from './BaseLayout.astro';
+import AuthorProfile from '../components/AuthorProfile.astro';
+import { formatDate } from '../utils/siteConfig';
+
+interface Props {
+  title: string;
+  date: Date;
+  venue?: string;
+  location?: string;
+  paperurl?: string;
+  citation?: string;
+  type?: string;
+}
+
+const { title, date, venue, location, paperurl, citation, type } = Astro.props;
+---
+
+<BaseLayout title={title} description={venue || title}>
+  <article class="container-page">
+    <div class="grid md:grid-cols-3 gap-8">
+      <aside class="md:col-span-1">
+        <AuthorProfile />
+      </aside>
+
+      <div class="md:col-span-2">
+        <div class="mb-6">
+          <h1 class="text-3xl font-bold mb-3 text-slate-900">{title}</h1>
+          <div class="text-sm text-slate-600 space-y-1">
+            <p>📅 <strong>{formatDate(date)}</strong></p>
+            {venue && <p>🏢 <strong>{venue}</strong></p>}
+            {location && <p>📍 <strong>{location}</strong></p>}
+            {type && <p><span class="bg-slate-100 px-2 py-1 rounded">{type}</span></p>}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none mb-6 text-slate-700 leading-relaxed">
+          <slot />
+        </div>
+
+        {citation && (
+          <div class="bg-slate-50 p-4 rounded border-l-4 border-blue-600 mb-6">
+            <p class="font-semibold text-sm text-slate-900 mb-2">Citation:</p>
+            <p class="text-xs text-slate-700 font-mono">{citation}</p>
+          </div>
+        )}
+
+        <div class="flex gap-3 flex-wrap">
+          {paperurl && (
+            <a href={paperurl} target="_blank" rel="noopener noreferrer" class="btn">
+              📄 View Paper
+            </a>
+          )}
+          <a href={Astro.url.pathname.includes('publications')
+            ? '/publications'
+            : Astro.url.pathname.includes('talks')
+              ? '/talks'
+              : '/teaching'} class="btn-secondary">
+            ← Back to List
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

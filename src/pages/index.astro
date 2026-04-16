@@ -1,0 +1,59 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorProfile from '../components/AuthorProfile.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../utils/siteConfig';
+
+const publications = await getCollection('publications');
+const talks = await getCollection('talks');
+const featured = sortByDateDesc(publications).slice(0, 2);
+---
+
+<BaseLayout title="Home" currentPage="/">
+  <section class="container-page">
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+      <aside class="md:col-span-1">
+        <AuthorProfile />
+      </aside>
+
+      <div class="md:col-span-2">
+        <h1 class="text-4xl font-bold mb-4 text-slate-900">Welcome</h1>
+
+        <div class="prose prose-sm max-w-none text-slate-700 space-y-4 leading-relaxed">
+          <p>
+            Hi. I'm Konstantin, a postdoctoral researcher supervised by Merle Behr at the University of Regensburg. My research revolves around graphical models and their use in high-dimensional statistics, in causal learning and in particular causal structure learning, and their intersection. I also like to write code and software packages accompanying my research.
+          </p>
+
+          <p>
+            Previously, I obtained my PhD in Mathematics at the chair of Mathematical Statistics at TUM. I am very fortunate to have been supervised by <a href="https://www.professoren.tum.de/en/drton-mathias">Mathias Drton</a> and <a href="https://tobias-windisch.de/">Tobias Windisch</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Publications -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6 text-slate-900">Recent Publications</h2>
+      <div class="grid md:grid-cols-2 gap-6 mb-4">
+        {featured.map((pub) => (
+          <PublicationCard item={pub} />
+        ))}
+      </div>
+      <div class="text-center">
+        <a href="/publications" class="btn">View All Publications →</a>
+      </div>
+    </section>
+
+    <!-- Talks -->
+    <section>
+      <h2 class="text-3xl font-bold mb-6 text-slate-900">Talks & Presentations</h2>
+      <p class="text-slate-700">
+        <a href="/talks" class="text-blue-600 hover:text-blue-800 underline">
+          View all {talks.length} talks
+        </a>
+      </p>
+    </section>
+  </section>
+</BaseLayout>

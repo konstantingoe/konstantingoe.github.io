@@ -1,0 +1,44 @@
+---
+// src/components/Footer.astro
+import { siteConfig } from '../utils/siteConfig';
+---
+
+<footer class="border-t border-slate-200 bg-slate-50 mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="font-semibold mb-3 text-slate-900">Contact</h3>
+        <a href={`mailto:${siteConfig.author.email}`} class="text-blue-600 hover:text-blue-800 underline">
+          {siteConfig.author.email}
+        </a>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-3 text-slate-900">Academic</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href={siteConfig.links.arxiv} class="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
+              arXiv
+            </a>
+          </li>
+          <li>
+            <a href={siteConfig.links.googleScholar} class="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
+              Google Scholar
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-3 text-slate-900">Code</h3>
+        <a href={siteConfig.links.github} class="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-200 pt-6 text-center text-sm text-slate-600">
+      <p>&copy; 2026 {siteConfig.author.name}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

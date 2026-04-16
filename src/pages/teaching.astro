@@ -1,0 +1,31 @@
+---
+// src/pages/teaching.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorProfile from '../components/AuthorProfile.astro';
+import TeachingCard from '../components/TeachingCard.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../utils/siteConfig';
+
+const teaching = sortByDateDesc(await getCollection('teaching'));
+---
+
+<BaseLayout title="Teaching" currentPage="/teaching">
+  <section class="container-page">
+    <div class="grid md:grid-cols-3 gap-8">
+      <aside class="md:col-span-1">
+        <AuthorProfile />
+      </aside>
+
+      <div class="md:col-span-2">
+        <h1 class="text-4xl font-bold mb-2 text-slate-900">Teaching</h1>
+        <p class="text-slate-600 mb-8">{teaching.length} teaching positions and courses</p>
+
+        <div class="space-y-6">
+          {teaching.map((course) => (
+            <TeachingCard item={course} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

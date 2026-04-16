@@ -1,0 +1,31 @@
+---
+// src/pages/publications.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorProfile from '../components/AuthorProfile.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../utils/siteConfig';
+
+const publications = sortByDateDesc(await getCollection('publications'));
+---
+
+<BaseLayout title="Publications" currentPage="/publications">
+  <section class="container-page">
+    <div class="grid md:grid-cols-3 gap-8">
+      <aside class="md:col-span-1">
+        <AuthorProfile />
+      </aside>
+
+      <div class="md:col-span-2">
+        <h1 class="text-4xl font-bold mb-2 text-slate-900">Publications</h1>
+        <p class="text-slate-600 mb-8">{publications.length} peer-reviewed publications</p>
+
+        <div class="space-y-6">
+          {publications.map((pub) => (
+            <PublicationCard item={pub} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

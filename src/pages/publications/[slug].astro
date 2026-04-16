@@ -1,0 +1,30 @@
+---
+// src/pages/publications/[slug].astro
+import CollectionLayout from '../../layouts/CollectionLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const publications = await getCollection('publications');
+  return publications.map((pub) => ({
+    params: { slug: pub.slug },
+    props: { item: pub },
+  }));
+}
+
+interface Props {
+  item: any;
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<CollectionLayout
+  title={item.data.title}
+  date={item.data.date}
+  venue={item.data.venue}
+  paperurl={item.data.paperurl}
+  citation={item.data.citation}
+>
+  <Content />
+</CollectionLayout>
