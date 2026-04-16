@@ -1,6 +1,6 @@
 ---
 title: "GRESIT"
-description: "Nonlinear causal discovery for grouped data using extended additive noise models and causal graph learning."
+description: "Nonlinear causal discovery for grouped data using additive noise models, deep learning, and sparse multitask learning"
 date: 2025-06-05
 languages: ["Python"]
 repository: "https://github.com/boschresearch/gresit"
