@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'media',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
@@ -46,6 +47,21 @@ export default {
               backgroundColor: '#f8fafc',
               padding: '0.125rem 0.375rem',
               borderRadius: '0.25rem',
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: '#e2e8f0',
+            a: {
+              color: '#60a5fa',
+              '&:hover': {
+                color: '#93c5fd',
+              },
+            },
+            code: {
+              color: '#f87171',
+              backgroundColor: '#1e293b',
             },
           },
         },

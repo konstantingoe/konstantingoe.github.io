@@ -17,8 +17,8 @@ const publications = sortByDateDesc(await getCollection('publications'));
       </aside>
 
       <div class="md:col-span-2">
-        <h1 class="text-4xl font-bold mb-2 text-slate-900">Publications</h1>
-        <p class="text-slate-600 mb-8">{publications.length} peer-reviewed publications</p>
+        <h1 class="text-4xl font-bold mb-2 text-slate-900 dark:text-slate-100">Publications</h1>
+        <p class="text-slate-600 dark:text-slate-400 mb-8">{publications.length} peer-reviewed publications</p>
 
         <div class="space-y-6">
           {publications.map((pub) => (

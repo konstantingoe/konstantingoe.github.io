@@ -4,31 +4,31 @@
 
 @layer base {
   body {
-    @apply bg-white text-slate-900 font-sans;
+    @apply bg-white text-slate-900 font-sans dark:bg-slate-900 dark:text-slate-100 transition-colors;
   }
 
   h1 {
-    @apply text-4xl font-bold mt-8 mb-4;
+    @apply text-4xl font-bold mt-8 mb-4 dark:text-slate-100;
   }
 
   h2 {
-    @apply text-3xl font-bold mt-6 mb-3;
+    @apply text-3xl font-bold mt-6 mb-3 dark:text-slate-100;
   }
 
   h3 {
-    @apply text-2xl font-bold mt-4 mb-2;
+    @apply text-2xl font-bold mt-4 mb-2 dark:text-slate-100;
   }
 
   a {
-    @apply text-blue-600 hover:text-blue-800 underline;
+    @apply text-blue-600 hover:text-blue-800 underline dark:text-blue-400 dark:hover:text-blue-300;
   }
 
   code {
-    @apply bg-slate-50 px-1.5 py-0.5 rounded text-red-600 text-sm;
+    @apply bg-slate-50 px-1.5 py-0.5 rounded text-red-600 text-sm dark:bg-slate-800 dark:text-red-400;
   }
 
   pre {
-    @apply bg-slate-900 text-slate-100 p-4 rounded overflow-auto mb-4;
+    @apply bg-slate-900 text-slate-100 p-4 rounded overflow-auto mb-4 dark:bg-slate-950;
   }
 
   pre code {
@@ -42,22 +42,23 @@
   }
 
   .card {
-    @apply border border-slate-200 rounded-lg p-6 hover:shadow-lg transition-shadow;
+    @apply border border-slate-200 rounded-lg p-6 hover:shadow-lg transition-shadow dark:border-slate-700 dark:bg-slate-800;
   }
 
   .card-title {
-    @apply text-xl font-semibold mb-2;
+    @apply text-xl font-semibold mb-2 dark:text-slate-100;
   }
 
   .card-meta {
-    @apply text-sm text-slate-600 mb-3;
+    @apply text-sm text-slate-600 mb-3 dark:text-slate-400;
   }
 
   .btn {
-    @apply inline-block px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition-colors;
+    @apply inline-block px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition-colors dark:bg-blue-700 dark:hover:bg-blue-600;
   }
 
   .btn-secondary {
-    @apply inline-block px-4 py-2 rounded border border-slate-300 text-slate-900 hover:bg-slate-50 transition-colors;
+    @apply inline-block px-4 py-2 rounded border border-slate-300 text-slate-900 hover:bg-slate-50 transition-colors dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-700;
   }
 }
+

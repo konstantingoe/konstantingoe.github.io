@@ -14,12 +14,12 @@ const slug = item.slug;
 
 <div class="card">
   <a href={`/teaching/${slug}`} class="no-underline">
-    <h3 class="card-title text-slate-900">{title}</h3>
+    <h3 class="card-title text-slate-900 dark:text-slate-100">{title}</h3>
   </a>
   <p class="card-meta">{venue}</p>
-  {type && <p class="text-xs bg-slate-200 text-slate-800 inline-block px-2 py-1 rounded mb-2">{type}</p>}
-  {location && <p class="text-xs text-slate-600 mb-2">📍 {location}</p>}
-  <p class="text-xs text-slate-500">{formatDate(date)}</p>
+  {type && <p class="text-xs bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 inline-block px-2 py-1 rounded mb-2">{type}</p>}
+  {location && <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">📍 {location}</p>}
+  <p class="text-xs text-slate-500 dark:text-slate-400">{formatDate(date)}</p>
   <a href={`/teaching/${slug}`} class="btn text-sm py-1 px-3 mt-3">
     View Details
   </a>

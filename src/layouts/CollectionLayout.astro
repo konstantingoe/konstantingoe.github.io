@@ -26,23 +26,23 @@ const { title, date, venue, location, paperurl, citation, type } = Astro.props;
 
       <div class="md:col-span-2">
         <div class="mb-6">
-          <h1 class="text-3xl font-bold mb-3 text-slate-900">{title}</h1>
-          <div class="text-sm text-slate-600 space-y-1">
+          <h1 class="text-3xl font-bold mb-3 text-slate-900 dark:text-slate-100">{title}</h1>
+          <div class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
             <p>📅 <strong>{formatDate(date)}</strong></p>
             {venue && <p>🏢 <strong>{venue}</strong></p>}
             {location && <p>📍 <strong>{location}</strong></p>}
-            {type && <p><span class="bg-slate-100 px-2 py-1 rounded">{type}</span></p>}
+            {type && <p><span class="bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100 px-2 py-1 rounded">{type}</span></p>}
           </div>
         </div>
 
-        <div class="prose prose-sm max-w-none mb-6 text-slate-700 leading-relaxed">
+        <div class="prose prose-sm max-w-none mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
           <slot />
         </div>
 
         {citation && (
-          <div class="bg-slate-50 p-4 rounded border-l-4 border-blue-600 mb-6">
-            <p class="font-semibold text-sm text-slate-900 mb-2">Citation:</p>
-            <p class="text-xs text-slate-700 font-mono">{citation}</p>
+          <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded border-l-4 border-blue-600 mb-6">
+            <p class="font-semibold text-sm text-slate-900 dark:text-slate-100 mb-2">Citation:</p>
+            <p class="text-xs text-slate-700 dark:text-slate-300 font-mono">{citation}</p>
           </div>
         )}
 

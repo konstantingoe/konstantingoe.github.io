@@ -17,8 +17,8 @@ const talks = sortByDateDesc(await getCollection('talks'));
       </aside>
 
       <div class="md:col-span-2">
-        <h1 class="text-4xl font-bold mb-2 text-slate-900">Talks & Presentations</h1>
-        <p class="text-slate-600 mb-8">{talks.length} conference talks and seminars</p>
+        <h1 class="text-4xl font-bold mb-2 text-slate-900 dark:text-slate-100">Talks & Presentations</h1>
+        <p class="text-slate-600 dark:text-slate-400 mb-8">{talks.length} conference talks and seminars</p>
 
         <div class="space-y-6">
           {talks.map((talk) => (
