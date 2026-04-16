@@ -1,0 +1,33 @@
+---
+// src/layouts/BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPage?: string;
+}
+
+const { title, description, currentPage } = Astro.props;
+const fullTitle = title ? `${title} | Konstantin Göbler` : 'Konstantin Göbler - Academic Website';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={`https://konstantingoe.github.io${Astro.url.pathname}`} />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <Header currentPage={currentPage} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

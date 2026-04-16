@@ -1,0 +1,25 @@
+---
+// src/components/TalkCard.astro
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../utils/siteConfig';
+
+interface Props {
+  item: CollectionEntry<'talks'>;
+}
+
+const { item } = Astro.props;
+const { title, date, venue, location } = item.data;
+const slug = item.slug;
+---
+
+<div class="card">
+  <a href={`/talks/${slug}`} class="no-underline">
+    <h3 class="card-title text-slate-900 dark:text-slate-100">{title}</h3>
+  </a>
+  <p class="card-meta">{venue}</p>
+  {location && <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">📍 {location}</p>}
+  <p class="text-xs text-slate-500 dark:text-slate-400">{formatDate(date)}</p>
+  <a href={`/talks/${slug}`} class="btn text-sm py-1 px-3 mt-3">
+    View Details
+  </a>
+</div>

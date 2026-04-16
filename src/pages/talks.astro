@@ -1,0 +1,31 @@
+---
+// src/pages/talks.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorProfile from '../components/AuthorProfile.astro';
+import TalkCard from '../components/TalkCard.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../utils/siteConfig';
+
+const talks = sortByDateDesc(await getCollection('talks'));
+---
+
+<BaseLayout title="Talks" currentPage="/talks">
+  <section class="container-page">
+    <div class="grid md:grid-cols-3 gap-8">
+      <aside class="md:col-span-1">
+        <AuthorProfile />
+      </aside>
+
+      <div class="md:col-span-2">
+        <h1 class="text-4xl font-bold mb-2 text-slate-900 dark:text-slate-100">Talks & Presentations</h1>
+        <p class="text-slate-600 dark:text-slate-400 mb-8">Conference talks and seminars</p>
+
+        <div class="space-y-6">
+          {talks.map((talk) => (
+            <TalkCard item={talk} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
