@@ -18,7 +18,7 @@ const packages = sortByDateDesc(await getCollection('packages'));
 
       <div class="md:col-span-2">
         <h1 class="text-4xl font-bold mb-2 text-slate-900 dark:text-slate-100">Software Packages</h1>
-        <p class="text-slate-600 dark:text-slate-400 mb-8">Research software written in Python, R, and Rust</p>
+        <p class="text-slate-600 dark:text-slate-400 mb-8">Research software</p>
 
         {packages.length === 0 ? (
           <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded border border-slate-200 dark:border-slate-700 text-center text-slate-600 dark:text-slate-400">
