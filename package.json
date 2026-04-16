@@ -13,7 +13,7 @@
   "dependencies": {
     "astro": "latest",
     "@astrojs/tailwind": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
