@@ -8,6 +8,13 @@ interface Props {
 
 const { currentPage } = Astro.props;
 
+const normalizePath = (path?: string) => {
+  if (!path) return '';
+  return path === '/' ? '/' : path.replace(/\/+$/, '');
+};
+
+const activePage = normalizePath(currentPage);
+
 const navItems = [
   { label: 'Publications', href: '/publications' },
   { label: 'Talks', href: '/talks' },
@@ -24,20 +31,25 @@ const navItems = [
     </a>
 
     <ul class="flex gap-6 list-none m-0 p-0">
-      {navItems.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class={`no-underline font-medium transition-colors ${
-              currentPage === item.href
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400'
-            }`}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
+      {navItems.map((item) => {
+        const isActive = activePage === normalizePath(item.href);
+
+        return (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive ? 'page' : undefined}
+              class={`no-underline font-medium transition-colors ${
+                isActive
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400'
+              }`}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </nav>
 </header>
