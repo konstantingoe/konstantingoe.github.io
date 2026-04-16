@@ -124,9 +124,6 @@ npm run dev
 
 # Type checking
 npm run check
-
-# Format code
-npm run format
 ```
 
 ## 📜 License
