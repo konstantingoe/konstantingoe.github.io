@@ -4,10 +4,5 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://konstantingoe.github.io',
-  output: 'static',
-  vite: {
-    ssr: {
-      external: ['svgo']
-    }
-  }
+  output: 'static'
 });
