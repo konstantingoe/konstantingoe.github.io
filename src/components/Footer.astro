@@ -1,6 +1,7 @@
 ---
 // src/components/Footer.astro
 import { siteConfig } from '../utils/siteConfig';
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-slate-200 bg-slate-50 mt-16 dark:bg-slate-800 dark:border-slate-700">
@@ -38,7 +39,7 @@ import { siteConfig } from '../utils/siteConfig';
     </div>
 
     <div class="border-t border-slate-200 pt-6 text-center text-sm text-slate-600 dark:border-slate-700 dark:text-slate-400">
-      <p>&copy; 2026 {siteConfig.author.name}. All rights reserved.</p>
+      <p>&copy; {currentYear} {siteConfig.author.name}. All rights reserved.</p>
     </div>
   </div>
 </footer>
