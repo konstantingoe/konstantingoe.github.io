@@ -76,13 +76,13 @@ Fastest and easiest deployment:
 **Result:** Live at https://konstantingoe.github.io (or custom domain)
 
 ### Option 2: **GitHub Pages (Free)**
-Manual but simple:
+Use GitHub Actions to build and deploy the site:
 
 1. Push to `main` branch
 2. Go to repo Settings → Pages
-3. Select "Deploy from a branch"
-4. Choose `main` branch, `/dist` folder
-5. Vercel auto-builds and pushes to `gh-pages` (or set up GitHub Actions)
+3. Under **Build and deployment**, select **GitHub Actions**
+4. Add a workflow that runs `npm ci` and `npm run build`
+5. Deploy the generated `dist/` output with GitHub Pages
 
 **Result:** Live at https://konstantingoe.github.io
 
