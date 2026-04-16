@@ -7,7 +7,7 @@ import { siteConfig } from '../utils/siteConfig';
   <div class="text-center">
     <img
       src={siteConfig.author.avatar}
-      alt={siteConfig.author.name}
+      alt={`${siteConfig.author.name} portrait`}
       width="128"
       height="128"
       decoding="async"
@@ -17,7 +17,7 @@ import { siteConfig } from '../utils/siteConfig';
     <p class="text-sm text-slate-600 dark:text-slate-400 mb-2">{siteConfig.author.title}</p>
     <p class="text-sm text-slate-700 dark:text-slate-300 mb-4">{siteConfig.author.bio}</p>
     <p class="text-xs text-slate-600 dark:text-slate-400 mb-4">
-      📍 {siteConfig.author.location}
+      <span aria-hidden="true">📍 </span>{siteConfig.author.location}
     </p>
 
     <div class="flex justify-center gap-3">
