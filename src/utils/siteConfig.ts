@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
     title: 'Statistician',
     bio: 'Postdoctoral researcher interested in causality and graphical models.',
     location: 'Erlangen, Germany',
-    email: 'konstantin.goebler@tum.de',
+    email: 'konstantingoebler@gmail.com',
     avatar: '/images/avatar.jpg',
   },
   links: {
