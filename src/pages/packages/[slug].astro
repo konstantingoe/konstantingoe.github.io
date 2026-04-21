@@ -1,7 +1,7 @@
 ---
 // src/pages/packages/[slug].astro
 import CollectionLayout from '../../layouts/CollectionLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const packages = await getCollection('packages');
@@ -24,33 +24,33 @@ const { Content } = await item.render();
   date={item.data.date}
 >
   <div class="mb-6">
-    <h3 class="font-semibold text-slate-900 mb-2">Description</h3>
-    <p class="text-slate-700">{item.data.description}</p>
+    <h3 class="font-semibold text-slate-900 dark:text-slate-100 mb-2">Description</h3>
+    <p class="text-slate-700 dark:text-slate-300">{item.data.description}</p>
   </div>
 
   <div class="mb-6">
-    <h3 class="font-semibold text-slate-900 mb-2">Languages</h3>
+    <h3 class="font-semibold text-slate-900 dark:text-slate-100 mb-2">Languages</h3>
     <div class="flex flex-wrap gap-2">
       {item.data.languages.map((lang: string) => (
-        <span class="bg-slate-100 text-slate-800 px-3 py-1 rounded text-sm">{lang}</span>
+        <span class="bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200 px-3 py-1 rounded text-sm">{lang}</span>
       ))}
     </div>
   </div>
 
-  <div class="bg-blue-50 p-4 rounded border border-blue-200 mb-6">
-    <p class="text-sm"><span class="font-semibold">Status:</span> <span class={`font-semibold ${
-      item.data.status === 'maintained' ? 'text-green-600' :
-      item.data.status === 'active' ? 'text-blue-600' :
-      'text-yellow-600'
+  <div class="bg-blue-50 dark:bg-slate-800 p-4 rounded border border-blue-200 dark:border-slate-600 mb-6">
+    <p class="text-sm text-slate-900 dark:text-slate-100"><span class="font-semibold">Status:</span> <span class={`font-semibold ${
+      item.data.status === 'maintained' ? 'text-green-600 dark:text-green-400' :
+      item.data.status === 'active' ? 'text-blue-600 dark:text-blue-400' :
+      'text-yellow-600 dark:text-yellow-400'
     }`}>{item.data.status}</span></p>
   </div>
 
   <Content />
 
   {item.data.repository && (
-    <div class="bg-slate-50 p-4 rounded border border-slate-200 mt-6">
-      <p class="mb-2 font-semibold text-slate-900">Repository</p>
-      <a href={item.data.repository} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 break-all">
+    <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded border border-slate-200 dark:border-slate-700 mt-6">
+      <p class="mb-2 font-semibold text-slate-900 dark:text-slate-100">Repository</p>
+      <a href={item.data.repository} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 break-all">
         {item.data.repository}
       </a>
     </div>

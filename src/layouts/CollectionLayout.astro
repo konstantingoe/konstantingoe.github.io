@@ -56,7 +56,9 @@ const { title, date, venue, location, paperurl, citation, type } = Astro.props;
             ? '/publications'
             : Astro.url.pathname.includes('talks')
               ? '/talks'
-              : '/teaching'} class="btn-secondary">
+              : Astro.url.pathname.includes('packages')
+                ? '/packages'
+                : '/teaching'} class="btn-secondary">
             ← Back to List
           </a>
         </div>

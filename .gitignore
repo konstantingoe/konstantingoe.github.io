@@ -33,3 +33,7 @@ _site/
 .jekyll-metadata
 Gemfile.lock
 Gemfile
+
+# Misc
+.claude/
+CLAUDE.md

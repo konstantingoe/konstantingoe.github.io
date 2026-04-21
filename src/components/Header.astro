@@ -26,14 +26,14 @@ const navItems = [
 
 <header class="border-b border-slate-200 bg-white sticky top-0 z-50 dark:bg-slate-800 dark:border-slate-700">
   <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="text-2xl font-bold text-slate-900 no-underline hover:text-blue-600 dark:text-slate-100 dark:hover:text-blue-400">
+    <a href="/" class="text-xl font-bold text-slate-900 no-underline hover:text-blue-600 dark:text-slate-100 dark:hover:text-blue-400 shrink-0">
       {siteConfig.author.name}
     </a>
 
-    <ul class="flex gap-6 list-none m-0 p-0">
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex gap-6 list-none m-0 p-0">
       {navItems.map((item) => {
         const isActive = activePage === normalizePath(item.href);
-
         return (
           <li>
             <a
@@ -51,5 +51,63 @@ const navItems = [
         );
       })}
     </ul>
+
+    <!-- Hamburger button (mobile only) -->
+    <button
+      id="menu-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="md:hidden p-2 rounded text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors"
+    >
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" class="hidden">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
   </nav>
+
+  <!-- Mobile nav dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700">
+    <ul class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1 list-none m-0">
+      {navItems.map((item) => {
+        const isActive = activePage === normalizePath(item.href);
+        return (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive ? 'page' : undefined}
+              class={`block py-2 px-3 rounded no-underline font-medium transition-colors ${
+                isActive
+                  ? 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-slate-700'
+                  : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-700'
+              }`}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    iconOpen?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+  });
+</script>
