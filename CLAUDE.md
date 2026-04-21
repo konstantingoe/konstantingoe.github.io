@@ -13,7 +13,7 @@ npm run check     # TypeScript/Astro type checking
 
 ## Architecture
 
-**Stack:** Astro 4 + Tailwind CSS, deployed to Vercel. No JavaScript ships to the browser by default.
+**Stack:** Astro 4 + Tailwind CSS, deployed to GitHub Pages. No JavaScript ships to the browser by default.
 
 **Content** lives in `src/content/` as Markdown files with YAML frontmatter, validated by Zod schemas defined in `src/content/config.ts`. Four collections: `publications`, `talks`, `teaching`, `packages`.
 
@@ -32,4 +32,4 @@ All content additions are Markdown files dropped into the relevant `src/content/
 
 ## Deployment
 
-Vercel auto-deploys on push to `master`. There is no GitHub Actions CI — `vercel.json` handles build config. The CNAME file sets the custom domain `konstantingoe.github.io`.
+GitHub Actions (`.github/workflows/deploy.yml`) builds and deploys to GitHub Pages on every push to `master`. The workflow runs `npm ci && npm run build` and uploads `dist/` as the Pages artifact.
