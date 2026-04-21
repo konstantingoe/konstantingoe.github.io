@@ -1,10 +1,10 @@
 ---
-title: "mixed-gm"
-description: "Graphical models for arbitrary mixed data types including continuous, discrete, count, and ordinal variables with high-dimensional support."
-date: 2024-05-15
-languages: ["R", "Python"]
+title: "humlpy"
+description: "HUMLPY: High-dimensional Undirected Mixed graph Learning in PYthon"
+date: 2026-02-25
+languages: ["Python"]
 repository: "https://github.com/konstantingoe/mixed-gm"
-documentation: "https://github.com/konstantingoe/mixed-gm"
+documentation: "https://konstantingoe.github.io/mixed-gm/"
 status: "active"
 featured: false
 ---
